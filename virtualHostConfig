@@ -1,3 +1,8 @@
+## Default Server Block
+# NGINX determines which server block to use based on matching
+# the HTTP header "Host" from the request against the server_name
+# directive in each server block. If no server_name directives
+# match the host header, nginx chooses the default server block
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
