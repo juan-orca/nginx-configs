@@ -1,8 +1,5 @@
-## Default Server Block
-# NGINX determines which server block to use based on matching
-# the HTTP header "Host" from the request against the server_name
-# directive in each server block. If no server_name directives
-# match the host header, nginx chooses the default server block
+# Serving more than one index file
+# nginx -s reload to update configuration file while running
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -16,22 +13,16 @@ server {
         }
 }
 
+server {
+       listen 80;
+       listen [::]:80;
 
-# Virtual Host configuration for example.com
-#
-# You can move that to a different file under sites-available/ and symlink that
-# to sites-enabled/ to enable it.
-#
-#server {
-#       listen 80;
-#       listen [::]:80;
-#
-#       server_name example.com;
-#
-#       root /var/www/example.com;
-#       index index.html;
-#
-#       location / {
-#               try_files $uri $uri/ =404;
-#       }
-#}
+       server_name example.com;
+
+       root /var/www/example.com;
+       index index.html;
+
+       location / {
+               try_files $uri $uri/ =404;
+       }
+}
